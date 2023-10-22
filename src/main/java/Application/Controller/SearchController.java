@@ -1,5 +1,6 @@
 package Application.Controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,15 +39,15 @@ public class SearchController {
      * returning 50.
      */
     @GetMapping(value = "cats", params = {"amount"})
-    public int getSearchFormat(){
-        return 0;
+    public int getSearchFormat(@RequestParam("amount") int amount){
+        return amount;
     }
     /**
      * TODO: extract the String 'format' and 'orderBy' query parameters from a request, such as
      * GET localhost:9000/cats?format=gif&orderby=new, returning a String array such as {"gif", "new"}
      */
     @GetMapping(value = "cats", params = {"format", "orderBy"})
-    public String[] getSearchFormatAndAmount(){
-        return null;
+    public String[] getSearchFormatAndAmount(@RequestParam("format") String format, @RequestParam("orderBy") String orderBy){
+        return new String[]{format, orderBy};
     }
 }
